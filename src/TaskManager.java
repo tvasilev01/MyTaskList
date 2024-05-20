@@ -13,7 +13,6 @@ public class TaskManager {
     public void addTask(Task task){
         tasks.add(task);
     }
-
     public void removeTask(Task task){
         tasks.remove(task);
     }
@@ -22,12 +21,15 @@ public class TaskManager {
         return tasks;
     }
 
-    public List<Task> filterTasksByDeadLine(Date deadline){
-        return tasks.stream()
-                .filter(task -> task.getDeadline().equals(deadline))
-                .collect(Collectors.toList());
-    }
-
+   public List<Task> filterTasksByDeadline(Date deadline){
+        List<Task> filteredTasks = new ArrayList<>();
+       for (Task task : tasks) {
+           if(task.getDeadline().equals(deadline)){
+               filteredTasks.add(task);
+           }
+       }
+       return filteredTasks;
+   }
     public void updateTask(Task oldTask, Task newTask){
         int index = tasks.indexOf(oldTask);
         if(index != -1){

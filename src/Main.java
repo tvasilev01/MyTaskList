@@ -7,7 +7,7 @@ public class Main {
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
 
-
+// testing number 1
 
         frame.setVisible(true);
     }

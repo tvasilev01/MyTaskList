@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.io.IOException;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -7,7 +9,10 @@ public class Main {
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
 
-// testing number 1
+        UserManager userManager = new UserManager();
+        TaskManager taskManager = new TaskManager();
+        LoginPanel loginPanel = new LoginPanel(frame, userManager, taskManager);
+        frame.setContentPane(loginPanel);
 
         frame.setVisible(true);
     }

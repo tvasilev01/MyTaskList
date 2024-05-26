@@ -75,7 +75,7 @@ private void saveTask(){
     try{
         Date deadline = new SimpleDateFormat("dd/MM/yyyy").parse(deadlineText);
 
-        if(task == null && !task.equals(deadline)){
+        if(task == null || !task.equals(deadline)){
             task = new Task(title, description, deadline, priority);
             taskManager.addTask(task);
         }else{

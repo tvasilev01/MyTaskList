@@ -33,15 +33,15 @@ public class TaskPanel extends JPanel {
         JButton editButton = new JButton("Edit Task");
         JButton deleteButton = new JButton("Delete Task");
         JButton saveButton = new JButton("Save Tasks");
-        filterField = new JTextField(10);
+        // filterField = new JTextField(10);
         JButton filterButton = new JButton("Filter by Deadline");
 
         buttonPanel.add(addButton);
         buttonPanel.add(editButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(saveButton);
-        buttonPanel.add(new JLabel("Deadline:"));
-        buttonPanel.add(filterField);
+       // buttonPanel.add(new JLabel("Deadline:"));
+        //buttonPanel.add(filterField);
         buttonPanel.add(filterButton);
 
         topPanel.add(welcomeLabel, BorderLayout.WEST);
@@ -101,20 +101,10 @@ public class TaskPanel extends JPanel {
         filterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String filterText = filterField.getText();
-                if (!filterText.isEmpty()) {
-                    try {
-                        Date filterDate = new SimpleDateFormat("dd/MM/yyyy").parse(filterText);
-                        List<Task> filteredTasks = taskManager.filterTasksByDeadline(filterDate);
-                        taskListModel.clear();
-                        for (Task task : filteredTasks) {
-                            taskListModel.addElement(task);
-                        }
-                    } catch (ParseException ex) {
-                        JOptionPane.showMessageDialog(frame, "Invalid date format. Please use dd/MM/yyyy");
-                    }
-                } else {
-                    refreshTaskList();
+                List<Task> sortedTasks = taskManager.filterTasksByDeadline();
+                taskListModel.clear();
+                for (Task task : sortedTasks) {
+                    taskListModel.addElement(task);
                 }
             }
         });

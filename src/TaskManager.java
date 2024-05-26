@@ -1,7 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class TaskManager {
     private List<Task> tasks;
@@ -21,14 +19,14 @@ public class TaskManager {
         return tasks;
     }
 
-   public List<Task> filterTasksByDeadline(Date deadline){
-        List<Task> filteredTasks = new ArrayList<>();
-       for (Task task : tasks) {
-           if(task.getDeadline().equals(deadline)){
-               filteredTasks.add(task);
+   public List<Task> filterTasksByDeadline(){
+       Collections.sort(tasks, new Comparator<Task>() {
+           @Override
+           public int compare(Task t1, Task t2) {
+               return t1.getDeadline().compareTo(t2.getDeadline());
            }
-       }
-       return filteredTasks;
+       });
+       return tasks;
    }
     public void updateTask(Task oldTask, Task newTask){
         int index = tasks.indexOf(oldTask);

@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,13 +13,25 @@ public class LoginPanel extends JPanel {
         this.userManager = userManager;
         this.taskManager = taskManager;
 
-        this.setLayout(null);
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/login-background.jpg"));
+
+        JPanel backgroundPanel = new JPanel(){
+            protected void paintComponent(Graphics g){
+                super.paintComponent(g);
+                Image image = imageIcon.getImage();
+                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+
+        backgroundPanel.setLayout(null);
 
         JLabel usernameLabel = new JLabel("Username:");
         usernameLabel.setBounds(200, 200, 100, 40);
+        usernameLabel.setFont(new Font("Serif", Font.BOLD, 18));
 
         JLabel passwordLabel = new JLabel("Password:");
         passwordLabel.setBounds(200, 250, 100, 40);
+        passwordLabel.setFont(new Font("Serif", Font.BOLD, 18));
 
         JTextField usernameField = new JTextField();
         usernameField.setBounds(300, 200, 300, 40);
@@ -28,9 +41,11 @@ public class LoginPanel extends JPanel {
 
         JButton loginButton = new JButton("Login");
         loginButton.setBounds(300, 300, 150, 40);
+        loginButton.setFont(new Font("Arial", Font.BOLD, 18));
 
         JButton registerButton = new JButton("Register");
         registerButton.setBounds(450, 300, 150, 40);
+        registerButton.setFont(new Font("Serif", Font.BOLD, 18));
 
         this.add(usernameLabel);
         this.add(usernameField);
@@ -67,5 +82,8 @@ public class LoginPanel extends JPanel {
                 }
             }
         });
+
+        this.setLayout(new BorderLayout());
+        this.add(backgroundPanel, BorderLayout.CENTER);
     }
 }

@@ -104,14 +104,14 @@ public class TaskPanel extends JPanel {
                 String filterText = filterField.getText();
                 if (!filterText.isEmpty()) {
                     try {
-                        Date filterDate = new SimpleDateFormat("yyyy-MM-dd").parse(filterText);
+                        Date filterDate = new SimpleDateFormat("dd/MM/yyyy").parse(filterText);
                         List<Task> filteredTasks = taskManager.filterTasksByDeadline(filterDate);
                         taskListModel.clear();
                         for (Task task : filteredTasks) {
                             taskListModel.addElement(task);
                         }
                     } catch (ParseException ex) {
-                        JOptionPane.showMessageDialog(frame, "Invalid date format. Please use yyyy-MM-dd");
+                        JOptionPane.showMessageDialog(frame, "Invalid date format. Please use dd/MM/yyyy");
                     }
                 } else {
                     refreshTaskList();
@@ -133,7 +133,7 @@ public class TaskPanel extends JPanel {
     private static class TaskListCellRenderer extends JLabel implements ListCellRenderer<Task> {
         @Override
         public Component getListCellRendererComponent(JList<? extends Task> list, Task value, int index, boolean isSelected, boolean cellHasFocus) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             setText(String.format("%s - %s - %s - Priority: %d", value.getTitle(), value.getDescription(), sdf.format(value.getDeadline()), value.getPriority()));
             if (isSelected) {
                 setBackground(list.getSelectionBackground());

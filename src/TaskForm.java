@@ -29,7 +29,7 @@ public TaskForm(JFrame parent, TaskManager taskManager, Task task){
     JLabel descriptionLabel = new JLabel("Description:");
     descriptionField = new JTextArea(3,20);
 
-    JLabel deadlineLabel = new JLabel("Deadline (yyyy-MM-dd:)");
+    JLabel deadlineLabel = new JLabel("Deadline (dd/MM/yyyy:)");
     deadlineField = new JTextField();
     // ново приорити
     JLabel priorityLabel = new JLabel("Priority:");
@@ -58,7 +58,7 @@ public TaskForm(JFrame parent, TaskManager taskManager, Task task){
     if(task != null){
         titleField.setText(task.getTitle());
         descriptionField.setText(task.getDescription());
-        deadlineField.setText(new SimpleDateFormat("yyyy-MM-dd").format(task.getDeadline()));
+        deadlineField.setText(new SimpleDateFormat("dd/MM/yyyy").format(task.getDeadline()));
         priorityComboBox.setSelectedItem(task.getPriority());
     }
 
@@ -73,9 +73,9 @@ private void saveTask(){
     int priority = (int) priorityComboBox.getSelectedItem();
 
     try{
-        Date deadline = new SimpleDateFormat("yyyy-MM-dd").parse(deadlineText);
+        Date deadline = new SimpleDateFormat("dd/MM/yyyy").parse(deadlineText);
 
-        if(task == null){
+        if(task == null && !task.equals(deadline)){
             task = new Task(title, description, deadline, priority);
             taskManager.addTask(task);
         }else{
@@ -87,7 +87,7 @@ private void saveTask(){
         }
         dispose();
     }catch (ParseException e){
-        JOptionPane.showMessageDialog(this, "Invalid date format. Please use yyyy-MM-dd");
+        JOptionPane.showMessageDialog(this, "Invalid date format. Please use dd/MM/yyyy");
     }
   }
 }

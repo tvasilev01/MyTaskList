@@ -49,7 +49,7 @@ public class Task implements Serializable {
     }
 
     public String toString(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return String.format("%s - %s - %s - Priority: %d", title, description, sdf.format(deadline), priority);
     }
 }

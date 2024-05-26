@@ -124,7 +124,7 @@ public class TaskPanel extends JPanel {
         @Override
         public Component getListCellRendererComponent(JList<? extends Task> list, Task value, int index, boolean isSelected, boolean cellHasFocus) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            setText(String.format("%s - %s - %s - Priority: %d", value.getTitle(), value.getDescription(), sdf.format(value.getDeadline()), value.getPriority()));
+            setText(String.format("Title: %s | Description: %s | Date: %s | Priority: %d", value.getTitle(), value.getDescription(), sdf.format(value.getDeadline()), value.getPriority()));
             if (isSelected) {
                 setBackground(list.getSelectionBackground());
                 setForeground(list.getSelectionForeground());

@@ -32,14 +32,14 @@ public class TaskPanel extends JPanel {
         JButton addButton = new JButton("Add Task");
         JButton editButton = new JButton("Edit Task");
         JButton deleteButton = new JButton("Delete Task");
-        JButton saveButton = new JButton("Save Tasks"); // Бутон за запазване на задачите
+        JButton saveButton = new JButton("Save Tasks");
         filterField = new JTextField(10);
         JButton filterButton = new JButton("Filter by Deadline");
 
         buttonPanel.add(addButton);
         buttonPanel.add(editButton);
         buttonPanel.add(deleteButton);
-        buttonPanel.add(saveButton); // Добавяне на бутона в панела
+        buttonPanel.add(saveButton);
         buttonPanel.add(new JLabel("Deadline:"));
         buttonPanel.add(filterField);
         buttonPanel.add(filterButton);
@@ -82,6 +82,18 @@ public class TaskPanel extends JPanel {
                     refreshTaskList();
                 } else {
                     JOptionPane.showMessageDialog(frame, "Please select a task to delete");
+                }
+            }
+        });
+    // --------------------    запазване - бутон
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    taskManager.saveTasksToFile("tasks.dat"); // Запазване на задачите във файл
+                    JOptionPane.showMessageDialog(frame, "Tasks saved successfully");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(frame, "Error saving tasks: " + ex.getMessage());
                 }
             }
         });

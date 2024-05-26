@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Task {
-
+public class Task implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String title;
     private String description;
     private Date deadline;

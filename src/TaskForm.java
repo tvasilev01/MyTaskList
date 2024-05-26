@@ -25,10 +25,13 @@ public TaskForm(JFrame parent, TaskManager taskManager, Task task){
 
     JLabel titleLabel = new JLabel("Title:");
     titleField = new JTextField();
+
     JLabel descriptionLabel = new JLabel("Description:");
     descriptionField = new JTextArea(3,20);
+
     JLabel deadlineLabel = new JLabel("Deadline (yyyy-MM-dd:)");
     deadlineField = new JTextField();
+    // ново приорити
     JLabel priorityLabel = new JLabel("Priority:");
     priorityComboBox = new JComboBox<>(new Integer[]{1,2,3,4,5});
 

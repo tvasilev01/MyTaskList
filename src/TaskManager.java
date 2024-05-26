@@ -1,7 +1,7 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TaskManager {
     private List<Task> tasks;
@@ -36,5 +36,30 @@ public class TaskManager {
             tasks.set(index, newTask);
         }
     }
-
+    // --------   запазваме файловете
+    public void saveTasksToFile(String filename) throws IOException {
+        String currentDir = System.getProperty("user.dir");
+        String filePath = currentDir + "/" + filename;
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(tasks);
+            System.out.println("Задачите са записани в " + filePath);
+        }catch (IOException e) {
+            System.err.println("Грешка при записване на задачите: " + e.getMessage());
+            throw e;
+        }
+    }
+    public void loadTasksFromFile(String filename) throws IOException, ClassNotFoundException {
+        File file = new File(System.getProperty("user.dir") + "/" + filename);
+        if (!file.exists()) {
+            System.out.println("Файлът не съществува, няма задачи за зареждане.");
+            return;
+        }
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+            tasks = (List<Task>) ois.readObject();
+            System.out.println("Задачите са заредени от " + filename);
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Грешка при зареждане на задачите: " + e.getMessage());
+            throw e;
+        }
+    }
 }

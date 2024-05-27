@@ -13,7 +13,7 @@ public class LoginPanel extends JPanel {
         this.userManager = userManager;
         this.taskManager = taskManager;
 
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/login-background.jpg"));
+        ImageIcon imageIcon = new ImageIcon("resources/login-background.jpg");
 
         JPanel backgroundPanel = new JPanel(){
             protected void paintComponent(Graphics g){

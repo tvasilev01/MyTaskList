@@ -21,7 +21,7 @@ public TaskForm(JFrame parent, TaskManager taskManager, Task task){
 
     setLayout(new BorderLayout());
 
-    JPanel formPanel = new JPanel(new GridLayout(4,2));
+    JPanel formPanel = new JPanel(new GridLayout(5,2));
 
     JLabel titleLabel = new JLabel("Title:");
     titleField = new JTextField();

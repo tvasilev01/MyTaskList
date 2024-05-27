@@ -33,16 +33,15 @@ public class TaskPanel extends JPanel {
         JButton editButton = new JButton("Edit Task");
         JButton deleteButton = new JButton("Delete Task");
         JButton saveButton = new JButton("Save Tasks");
-        // filterField = new JTextField(10);
         JButton filterButton = new JButton("Filter by Deadline");
+        JButton sortByPriorityButton = new JButton("Sort by Priority");
 
         buttonPanel.add(addButton);
         buttonPanel.add(editButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(saveButton);
-       // buttonPanel.add(new JLabel("Deadline:"));
-        //buttonPanel.add(filterField);
         buttonPanel.add(filterButton);
+        buttonPanel.add(sortByPriorityButton);
 
         topPanel.add(welcomeLabel, BorderLayout.WEST);
         topPanel.add(buttonPanel, BorderLayout.EAST);
@@ -102,6 +101,17 @@ public class TaskPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 List<Task> sortedTasks = taskManager.filterTasksByDeadline();
+                taskListModel.clear();
+                for (Task task : sortedTasks) {
+                    taskListModel.addElement(task);
+                }
+            }
+        });
+
+        sortByPriorityButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<Task> sortedTasks = taskManager.getTasksSortedBtPriority();
                 taskListModel.clear();
                 for (Task task : sortedTasks) {
                     taskListModel.addElement(task);

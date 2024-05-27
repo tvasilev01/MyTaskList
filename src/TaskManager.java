@@ -19,6 +19,16 @@ public class TaskManager {
         return tasks;
     }
 
+    public List<Task> getTasksSortedBtPriority(){
+       Collections.sort(tasks, new Comparator<Task>() {
+           @Override
+           public int compare(Task o1, Task o2) {
+               return Integer.compare(o1.getPriority(), o2.getPriority());
+           }
+       });
+       return tasks;
+    }
+
    public List<Task> filterTasksByDeadline(){
        Collections.sort(tasks, new Comparator<Task>() {
            @Override

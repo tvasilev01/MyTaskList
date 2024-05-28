@@ -7,13 +7,13 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TaskPanel extends JPanel {
-    private JFrame frame;
-    private User user;
-    private TaskManager taskManager;
-    private DefaultListModel<Task> taskListModel;
-    private JList<Task> taskList;
+    private final JFrame frame;
+    private final User user;
+    private final TaskManager taskManager;
+    private final DefaultListModel<Task> taskListModel;
+    private final JList<Task> taskList;
 
-    public TaskPanel(JFrame frame, User user, TaskManager taskManager) {
+    public TaskPanel(JFrame frame, User user, TaskManager taskManager, UserManager userManager) {
         this.frame = frame;
         this.user = user;
         this.taskManager = taskManager;
@@ -27,7 +27,7 @@ public class TaskPanel extends JPanel {
         JLabel welcomeLabel = new JLabel("Welcome, " + user.getUsername() + ".");
         welcomeLabel.setFont(new Font("Serif", Font.BOLD, 18));
         welcomeLabel.setForeground(new Color(128, 0, 128));
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.setBackground(Color.LIGHT_GRAY);
 
         JButton addButton = new JButton("Add Task");
@@ -54,6 +54,10 @@ public class TaskPanel extends JPanel {
         sortByPriorityButton.setFont(new Font("Serif", Font.ITALIC, 16));
         sortByPriorityButton.setForeground(Color.WHITE);
         sortByPriorityButton.setBackground(Color.GRAY);
+        JButton logoutButton = new JButton("Log out");
+        logoutButton.setFont(new Font("Serif", Font.ITALIC, 16));
+        logoutButton.setForeground(Color.RED);
+        logoutButton.setBackground(Color.LIGHT_GRAY);
 
         buttonPanel.add(addButton);
         buttonPanel.add(editButton);
@@ -61,9 +65,11 @@ public class TaskPanel extends JPanel {
         buttonPanel.add(saveButton);
         buttonPanel.add(filterButton);
         buttonPanel.add(sortByPriorityButton);
+        buttonPanel.add(logoutButton);
 
         topPanel.add(welcomeLabel, BorderLayout.WEST);
-        topPanel.add(buttonPanel, BorderLayout.EAST);
+        topPanel.add(buttonPanel, BorderLayout.CENTER);
+        topPanel.add(logoutButton, BorderLayout.EAST);
 
         add(topPanel, BorderLayout.NORTH);
         add(new JScrollPane(taskList), BorderLayout.CENTER);
@@ -138,9 +144,18 @@ public class TaskPanel extends JPanel {
             }
         });
 
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setContentPane(new LoginPanel(frame, userManager, taskManager));
+                frame.revalidate();
+            }
+        });
+
         taskList.setCellRenderer(new TaskListCellRenderer());
         refreshTaskList();
     }
+
 
     private void refreshTaskList() {
         taskListModel.clear();

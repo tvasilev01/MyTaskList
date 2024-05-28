@@ -4,9 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginPanel extends JPanel {
-    private JFrame frame;
-    private UserManager userManager;
-    private TaskManager taskManager;
+    private final JFrame frame;
+    private final UserManager userManager;
+    private final TaskManager taskManager;
 
     public LoginPanel(JFrame frame, UserManager userManager, TaskManager taskManager) {
         this.frame = frame;
@@ -26,27 +26,27 @@ public class LoginPanel extends JPanel {
         backgroundPanel.setLayout(null);
 
         JLabel usernameLabel = new JLabel("Username:");
-        usernameLabel.setBounds(200, 200, 100, 40);
+        usernameLabel.setBounds(250, 200, 100, 40);
         usernameLabel.setFont(new Font("Serif", Font.BOLD, 18));
 
         JLabel passwordLabel = new JLabel("Password:");
-        passwordLabel.setBounds(200, 250, 100, 40);
+        passwordLabel.setBounds(250, 250, 100, 40);
         passwordLabel.setFont(new Font("Serif", Font.BOLD, 18));
 
         JTextField usernameField = new JTextField();
-        usernameField.setBounds(300, 200, 300, 40);
+        usernameField.setBounds(350, 200, 300, 40);
 
         JPasswordField passwordField = new JPasswordField();
-        passwordField.setBounds(300, 250, 300, 40);
+        passwordField.setBounds(350, 250, 300, 40);
 
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(300, 300, 150, 40);
+        loginButton.setBounds(350, 300, 150, 40);
         loginButton.setForeground(Color.WHITE);
         loginButton.setBackground(Color.LIGHT_GRAY);
         loginButton.setFont(new Font("Arial", Font.BOLD, 18));
 
         JButton registerButton = new JButton("Register");
-        registerButton.setBounds(450, 300, 150, 40);
+        registerButton.setBounds(500, 300, 150, 40);
         registerButton.setForeground(Color.WHITE);
         registerButton.setBackground(Color.GRAY);
         registerButton.setFont(new Font("Arial", Font.BOLD, 18));
@@ -78,7 +78,7 @@ public class LoginPanel extends JPanel {
                 String password = new String(passwordField.getPassword());
                 User user = userManager.authenticate(username, password);
                 if (user != null) {
-                    TaskPanel taskPanel = new TaskPanel(frame, user, taskManager);
+                    TaskPanel taskPanel = new TaskPanel(frame, user, taskManager, userManager);
                     frame.setContentPane(taskPanel);
                     frame.revalidate();
                 } else {

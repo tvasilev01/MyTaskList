@@ -61,8 +61,14 @@ public class LoginPanel extends JPanel {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = usernameField.getText();
-                String password = new String(passwordField.getPassword());
+                String username = usernameField.getText().trim();
+                String password = new String(passwordField.getPassword()).trim();
+
+                if(username.isEmpty() || password.isEmpty()){
+                    JOptionPane.showMessageDialog(frame, "Username and password cannot be empty");
+                    return;
+                }
+
                 if (userManager.addUser(username, password)) {
                     JOptionPane.showMessageDialog(frame, "Registration successful");
                 } else {

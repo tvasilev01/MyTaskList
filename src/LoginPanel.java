@@ -15,8 +15,8 @@ public class LoginPanel extends JPanel {
 
         ImageIcon imageIcon = new ImageIcon("resources/login-background.jpg");
 
-        JPanel backgroundPanel = new JPanel(){
-            protected void paintComponent(Graphics g){
+        JPanel backgroundPanel = new JPanel() {
+            protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Image image = imageIcon.getImage();
                 g.drawImage(image, 0, 0, getWidth(), getHeight(), this);

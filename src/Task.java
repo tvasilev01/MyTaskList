@@ -9,7 +9,7 @@ public class Task implements Serializable {
     private Date deadline;
     private int priority;
 
-    public Task(String title, String description, Date deadline, int priority){
+    public Task(String title, String description, Date deadline, int priority) {
         this.title = title;
         this.description = description;
         this.deadline = deadline;
@@ -48,7 +48,7 @@ public class Task implements Serializable {
         this.priority = priority;
     }
 
-    public String toString(){
+    public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return String.format("%s - %s - %s - Priority: %d", title, description, sdf.format(deadline), priority);
     }

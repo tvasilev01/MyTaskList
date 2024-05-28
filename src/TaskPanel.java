@@ -3,9 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class TaskPanel extends JPanel {
@@ -14,7 +12,6 @@ public class TaskPanel extends JPanel {
     private TaskManager taskManager;
     private DefaultListModel<Task> taskListModel;
     private JList<Task> taskList;
-    private JTextField filterField;
 
     public TaskPanel(JFrame frame, User user, TaskManager taskManager) {
         this.frame = frame;
@@ -26,15 +23,37 @@ public class TaskPanel extends JPanel {
         setLayout(new BorderLayout());
 
         JPanel topPanel = new JPanel(new BorderLayout());
-        JLabel welcomeLabel = new JLabel("Welcome, " + user.getUsername());
+        topPanel.setBackground(Color.LIGHT_GRAY);
+        JLabel welcomeLabel = new JLabel("Welcome, " + user.getUsername() + ".");
+        welcomeLabel.setFont(new Font("Serif", Font.BOLD, 18));
+        welcomeLabel.setForeground(new Color(128, 0, 128));
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttonPanel.setBackground(Color.LIGHT_GRAY);
 
         JButton addButton = new JButton("Add Task");
+        addButton.setFont(new Font("Serif", Font.ITALIC, 16));
+        addButton.setForeground(Color.WHITE);
+        addButton.setBackground(Color.GRAY);
         JButton editButton = new JButton("Edit Task");
+        editButton.setFont(new Font("Serif", Font.ITALIC, 16));
+        editButton.setForeground(Color.WHITE);
+        editButton.setBackground(Color.GRAY);
         JButton deleteButton = new JButton("Delete Task");
+        deleteButton.setFont(new Font("Serif", Font.ITALIC, 16));
+        deleteButton.setForeground(Color.WHITE);
+        deleteButton.setBackground(Color.GRAY);
         JButton saveButton = new JButton("Save Tasks");
+        saveButton.setFont(new Font("Serif", Font.ITALIC, 16));
+        saveButton.setForeground(Color.WHITE);
+        saveButton.setBackground(Color.GRAY);
         JButton filterButton = new JButton("Filter by Deadline");
+        filterButton.setFont(new Font("Serif", Font.ITALIC, 16));
+        filterButton.setForeground(Color.WHITE);
+        filterButton.setBackground(Color.GRAY);
         JButton sortByPriorityButton = new JButton("Sort by Priority");
+        sortByPriorityButton.setFont(new Font("Serif", Font.ITALIC, 16));
+        sortByPriorityButton.setForeground(Color.WHITE);
+        sortByPriorityButton.setBackground(Color.GRAY);
 
         buttonPanel.add(addButton);
         buttonPanel.add(editButton);

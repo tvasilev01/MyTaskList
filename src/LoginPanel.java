@@ -41,11 +41,15 @@ public class LoginPanel extends JPanel {
 
         JButton loginButton = new JButton("Login");
         loginButton.setBounds(300, 300, 150, 40);
+        loginButton.setForeground(Color.WHITE);
+        loginButton.setBackground(Color.LIGHT_GRAY);
         loginButton.setFont(new Font("Arial", Font.BOLD, 18));
 
         JButton registerButton = new JButton("Register");
         registerButton.setBounds(450, 300, 150, 40);
-        registerButton.setFont(new Font("Serif", Font.BOLD, 18));
+        registerButton.setForeground(Color.WHITE);
+        registerButton.setBackground(Color.GRAY);
+        registerButton.setFont(new Font("Arial", Font.BOLD, 18));
 
         this.add(usernameLabel);
         this.add(usernameField);
